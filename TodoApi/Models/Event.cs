@@ -14,13 +14,13 @@ namespace TodoApi.Models
         //fecha de fin de evento
         public DateTime _fin { get; set; }
         //nombre de evento
-        public String nombre { get; set; }
+        public string nombre { get; set; }
         //ruta de la imagen
-        public String img { get; set; }
+        public string img { get; set; }
         //ForeignKey
         public int organizacionID { get; set; }
         //descripcion del evento
-        public String description { get; set; }
+        public string description { get; set; }
 
     }
 }
