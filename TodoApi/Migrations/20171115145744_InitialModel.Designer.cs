@@ -11,8 +11,8 @@ using TodoApi.Models;
 namespace TodoApi.Migrations
 {
     [DbContext(typeof(TodoContext))]
-    [Migration("20171115135647_init")]
-    partial class init
+    [Migration("20171115145744_InitialModel")]
+    partial class InitialModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,7 +26,7 @@ namespace TodoApi.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("OrganizationID");
+                    b.Property<int?>("OrganizationID");
 
                     b.Property<DateTime>("_fin");
 
@@ -49,7 +49,7 @@ namespace TodoApi.Migrations
 
             modelBuilder.Entity("TodoApi.Models.Organization", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("img");

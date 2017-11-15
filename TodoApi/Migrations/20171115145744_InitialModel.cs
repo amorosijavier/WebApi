@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace TodoApi.Migrations
 {
-    public partial class init : Migration
+    public partial class InitialModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,8 @@ namespace TodoApi.Migrations
                 name: "OrganizationItems",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     img = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     mail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -44,7 +45,7 @@ namespace TodoApi.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    OrganizationID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    OrganizationID = table.Column<int>(type: "int", nullable: true),
                     _fin = table.Column<DateTime>(type: "datetime2", nullable: false),
                     _inicio = table.Column<DateTime>(type: "datetime2", nullable: false),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),

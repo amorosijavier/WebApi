@@ -25,7 +25,7 @@ namespace TodoApi.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("OrganizationID");
+                    b.Property<int?>("OrganizationID");
 
                     b.Property<DateTime>("_fin");
 
@@ -48,7 +48,7 @@ namespace TodoApi.Migrations
 
             modelBuilder.Entity("TodoApi.Models.Organization", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("img");

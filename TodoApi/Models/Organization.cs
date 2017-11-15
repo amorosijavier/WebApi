@@ -13,7 +13,7 @@ namespace TodoApi.Models
         //Lave con auto incremento
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public Guid ID { get; set; }
+        public int ID { get; set; }
         //nombre de la organizacion Requerido
         [Required]
         public string nombre { get; set; }
