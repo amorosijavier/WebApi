@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,9 +11,9 @@ namespace TodoApi.Models
     {
         //ID de la organizacion no visible para el usuario
         //Lave con auto incremento
-        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int ID { get; set; }
+        public Guid ID { get; set; }
         //nombre de la organizacion Requerido
         [Required]
         public string nombre { get; set; }

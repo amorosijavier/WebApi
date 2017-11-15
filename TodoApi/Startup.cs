@@ -9,7 +9,11 @@ namespace TodoApi
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
+            
+
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=EFGetStarted.AspNetCore.NewDb;Trusted_Connection=True;";
+            services.AddDbContext<TodoContext>(options => options.UseSqlServer(connection));
+
             services.AddMvc();
         }
 

@@ -45,8 +45,19 @@ namespace TodoApi.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]Event item)
         {
+            //si el item es nulo lo procesa como badRequest
+            if (item == null)
+            {
+                return BadRequest();
+            }
+            //agrega el item evento a la base de datos
+            _context.EventItems.Add(item);
+            _context.SaveChanges();
+
+            return CreatedAtRoute("GetTodo", new { id =item.ID }, item);
+
         }
 
         // PUT api/values/5
