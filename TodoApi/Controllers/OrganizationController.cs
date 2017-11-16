@@ -40,12 +40,15 @@ namespace TodoApi.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public Organization Get(int id)
+        public IActionResult Get(int id)
         {
             Organization toR = _context.OrganizationItems.SingleOrDefault(c => c.ID == id);
             if (toR == null)
-                throw new NullReferenceException(); //Chequear en futuros refactorings
-            return toR;
+                return NotFound();
+
+            return new ObjectResult(toR);
+
+           
         }
         [HttpPost]
         public IActionResult Create([FromBody]Organization item)
@@ -72,31 +75,38 @@ namespace TodoApi.Controllers
         }
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Organization org)
+        public IActionResult Update(int id, [FromBody]Organization org)
         {
             Organization toModify = _context.OrganizationItems.SingleOrDefault(c => c.ID == id);
+            //si la organizacion dada no se encuentra en la base de datos
             if (toModify == null)
-                throw new NullReferenceException();//codigo a revisar en futuros refactorings
+                return NotFound();
+            //si la organizacion que nos pasan por parametro es nula
+            if (org == null)
+                return BadRequest();
             toModify.eventos = org.eventos;//Còdigo A revisar en futuros refactorings
             toModify.img = org.img;
             toModify.mail = org.mail;
             toModify.nombre = org.nombre;
             toModify.password = org.password;
-            
+
 
             //guardo los cambios en la base de datos...
-
+            _context.OrganizationItems.Update(toModify);
             _context.SaveChanges();
-
+            return new NoContentResult();
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             Organization toR = _context.OrganizationItems.SingleOrDefault(c => c.ID == id);
+            if (toR == null)
+                return NotFound();
             _context.OrganizationItems.Remove(toR);
             _context.SaveChanges();
+            return new NoContentResult();
         }
     }
 }
